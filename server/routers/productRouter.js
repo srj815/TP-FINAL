@@ -1,5 +1,5 @@
 const express = require('express')
-const { createProduct, getProducts, deleteProduct, getProductById } = require('../dao/controllers/productController')
+const { createProduct, getProducts, deleteProduct, getProductById, updateProduct } = require('../dao/controllers/productController')
 const productRouter =  express.Router()
 
 productRouter.get('/', async (req, res) => {
@@ -45,6 +45,8 @@ productRouter.get('/:pid', async(req, res) =>{
             error: 'Product not found'})
     }
 })
+
+productRouter.put('/:pid', updateProduct);
 
 
 module.exports  = productRouter

@@ -33,5 +33,18 @@ const deleteProduct = async (pid) =>{
 
 }
 
+const updateProduct = async (req, res) => {
+    const productId = req.params.pid;
+    const updatedProductData = req.body;
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate(productId, updatedProductData, { new: true });
+        res.status(200).json({ ok: true, product: updatedProduct });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ ok: false, error: 'Error al actualizar el producto' });
+    }
+};
 
-module.exports = {createProduct, getProducts, deleteProduct, getProductById}
+
+
+module.exports = {createProduct, getProducts, deleteProduct, getProductById, updateProduct}
